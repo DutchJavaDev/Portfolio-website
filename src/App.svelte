@@ -5,29 +5,39 @@
         FullpageSection,
         FullpageSlide
     } from 'svelte-fullpage';
+
+    import Landing from './Components/Landing.svelte';
+
     //Optional, include all titles of your sections, this is also used as number that indicate count of sections
-    const sections = [
-        'Landing',
-        'Projects',
-        'Experiences',
-        'About me'
-    ];
+    // const sections = [
+    //     'Landing',
+    //     'Projects',
+    //     'Experiences',
+    //     'About me'
+    // ];
 
 	// Project slides
-    const slides = [
-        'one',
-        'two',
-        'three'
-    ];
+    // const slides = [
+    //     'one',
+    //     'two',
+    //     'three'
+    // ];
+
+    let currentSlide = 0;
+
+    function setSlide(num){
+        currentSlide = num;
+    }
+
 </script>
 
-<Fullpage {sections} arrows>
+<Fullpage arrows bind:activeSection={currentSlide}>
 
-    <FullpageSection center>
-        Landing
+    <FullpageSection>
+        <Landing gotoSlide={setSlide}/>
     </FullpageSection>
 
-    <FullpageSection {slides} arrows>
+    <FullpageSection arrows>
         <FullpageSlide>
             Projects#
         </FullpageSlide>
