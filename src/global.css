@@ -8,14 +8,17 @@ body {
 body {
     background-color: #162848;
     color: white;
-    font-size: 2rem;
     margin: 0;
     padding: 8px;
     box-sizing: border-box;
     font-family: "Roboto mono";
 }
 
+
+/* Landing */
+
 .svelte-fp-indicator {
+    /* change z index? */
     display: none !important;
 }
 
@@ -25,7 +28,7 @@ span {
 }
 
 #platform {
-    color: #7635FF !important;
+    color: #3575ff !important;
     font-weight: bold;
 }
 
@@ -70,6 +73,7 @@ nav {
 .nav-right {
     float: right;
     margin-right: 15px;
+    margin-top: 10px;
 }
 
 .nav-right>span {
@@ -82,3 +86,6 @@ nav {
     border-bottom: 3px solid gray;
     padding-bottom: 5px;
 }
+
+
+/* Landing END*/
