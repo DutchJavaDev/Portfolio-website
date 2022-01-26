@@ -7,53 +7,50 @@
     } from 'svelte-fullpage';
 
     import Landing from './Components/Landing.svelte';
-
-    //Optional, include all titles of your sections, this is also used as number that indicate count of sections
-    // const sections = [
-    //     'Landing',
-    //     'Projects',
-    //     'Experiences',
-    //     'About me'
-    // ];
-
-	// Project slides
-    // const slides = [
-    //     'one',
-    //     'two',
-    //     'three'
-    // ];
+    import Projects from './Components/Projects.svelte';
+    import Experiences from './Components/Experience.svelte';
+    import About from './Components/About.svelte';
 
     let currentSlide = 0;
 
-    function setSlide(num){
+    function gotoSlide(num){
         currentSlide = num;
     }
 
+    let slides = [
+        "one",
+        "two",
+        "three"
+    ];
+
 </script>
 
-<Fullpage arrows bind:activeSection={currentSlide}>
+<Fullpage bind:activeSection={currentSlide}>
 
     <FullpageSection>
-        <Landing gotoSlide={setSlide}/>
+        <Landing gotoSlide={gotoSlide}/>
     </FullpageSection>
 
-    <FullpageSection arrows>
+    <FullpageSection {slides} arrows>
+        <!-- Create a fullpageslide per 3 projects -->
         <FullpageSlide>
-            Projects#
+            <Projects/>
         </FullpageSlide>
+
         <FullpageSlide>
-            Projects#
+            <Projects/>
         </FullpageSlide>
+
         <FullpageSlide>
-            Projects#
+            <Projects/>
         </FullpageSlide>
     </FullpageSection>
 
     <FullpageSection>
-        Experiences
+        <Experiences/>
     </FullpageSection>
 	
     <FullpageSection>
-        About me
+        <About/>
     </FullpageSection>
 </Fullpage>
