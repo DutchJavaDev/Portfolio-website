@@ -12,17 +12,89 @@
     import About from './Components/About.svelte';
 
     let currentSlide = 0;
+    let projectsPerSlide = 3;
 
     function gotoSlide(num){
         currentSlide = num;
     }
 
-    let slides = [
-        "one",
-        "two",
-        "three"
+    let slides = [];
+
+
+    // Dummy projects
+    let projects = [
+        {
+            title:"Project title",
+            description:"Project description",
+            link:"View on github",
+        },
+        {
+            title:"Project title",
+            description:"Project description",
+            link:"View on github",
+        },
+        {
+            title:"Project title",
+            description:"Project description",
+            link:"View on github",
+        },
+        {
+            title:"Project title",
+            description:"Project description",
+            link:"View on github",
+        },
+        {
+            title:"Project title",
+            description:"Project description",
+            link:"View on github",
+        },
+        {
+            title:"Project title",
+            description:"Project description",
+            link:"View on github",
+        },
+        {
+            title:"Project title",
+            description:"Project description",
+            link:"View on github",
+        },
+        {
+            title:"Project title",
+            description:"Project description",
+            link:"View on github",
+        },
+        {
+            title:"Project title",
+            description:"Project description",
+            link:"View on github",
+        },
+        {
+            title:"Project title",
+            description:"Project description",
+            link:"View on github",
+        }
     ];
 
+    let projectSetPer3 = [];
+
+    let temp = [];
+
+    for (let i = 0; i < projects.length; i++)
+    {
+        temp.push(projects[i]);
+        if(temp.length % projectsPerSlide == 0)
+        {
+            projectSetPer3.push(temp);
+            temp = [];
+            slides.push(i*i);
+        }
+        else if(i == projects.length-1)
+        {
+            projectSetPer3.push(temp);
+            temp = [];
+            slides.push(i*i);
+        }
+    }
 </script>
 
 <Fullpage bind:activeSection={currentSlide}>
@@ -32,18 +104,11 @@
     </FullpageSection>
 
     <FullpageSection {slides} arrows>
-        <!-- Create a fullpageslide per 3 projects -->
-        <FullpageSlide>
-            <Projects/>
-        </FullpageSlide>
-
-        <FullpageSlide>
-            <Projects/>
-        </FullpageSlide>
-
-        <FullpageSlide>
-            <Projects/>
-        </FullpageSlide>
+        {#each projectSetPer3 as projectSet}
+            <FullpageSlide>
+                <Projects projects={projectSet}/>
+            </FullpageSlide>
+        {/each}
     </FullpageSection>
 
     <FullpageSection>
