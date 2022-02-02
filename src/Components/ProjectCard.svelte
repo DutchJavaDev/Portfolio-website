@@ -16,15 +16,16 @@
 <style>
     .card-container {
         display: grid;
+        overflow-x: hidden;
         grid-template-columns: auto;
-        border: 3px solid white;
+        border: 2px solid white;
         border-radius: 5px;
     }
 
     hr{
         background-color: white !important;
         width: 100%;
-        height: 3px;
+        height: 1px;
     }
 
     .card-title {
