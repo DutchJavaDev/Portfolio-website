@@ -8,7 +8,7 @@
 
     import Landing from './Components/Landing.svelte';
     import Projects from './Components/Projects.svelte';
-    import Experiences from './Components/Experience.svelte';
+    import Experience from './Components/Experience.svelte';
     import About from './Components/About.svelte';
 
     let currentSlide = 0;
@@ -18,7 +18,57 @@
         currentSlide = num;
     }
 
-    let slides = [];
+    let projectSlides = [];
+    let experienceSlides = [];
+
+    // Dummy experiences
+    let experience = [
+        {
+            year: "2000 - 2001 @ Appec",
+            title: "Fullstack developer",
+            description: "Project description, Project description, Project description,Project description",
+            stack: "C#, ASP.NET MVC"
+        },
+        {
+            year: "2000 - 2001 @ Appec",
+            title: "Fullstack developer",
+            description: "Project description, Project description, Project description,Project description",
+            stack: "C#, ASP.NET MVC"
+        },
+        {
+            year: "2000 - 2001 @ Appec",
+            title: "Fullstack developer",
+            description: "Project description, Project description, Project description,Project description",
+            stack: "C#, ASP.NET MVC"
+        },
+        {
+            year: "2000 - 2001 @ Appec",
+            title: "Fullstack developer",
+            description: "Project description, Project description, Project description,Project description",
+            stack: "C#, ASP.NET MVC"
+        },
+    ];
+
+    let experiencesSetPer3 = [];
+
+    let temp = [];
+
+    for (let i = 0; i < experience.length; i++)
+    {
+        temp.push(experience[i]);
+        if(temp.length % projectsPerSlide == 0)
+        {
+            experiencesSetPer3.push(temp);
+            temp = [];
+            experienceSlides.push(i*i);
+        }
+        else if(i == experience.length-1)
+        {
+            experiencesSetPer3.push(temp);
+            temp = [];
+            experienceSlides.push(i*i);
+        }
+    }
 
 
     // Dummy projects
@@ -77,7 +127,7 @@
 
     let projectSetPer3 = [];
 
-    let temp = [];
+    temp = [];
 
     for (let i = 0; i < projects.length; i++)
     {
@@ -86,13 +136,13 @@
         {
             projectSetPer3.push(temp);
             temp = [];
-            slides.push(i*i);
+            projectSlides.push(i*i);
         }
         else if(i == projects.length-1)
         {
             projectSetPer3.push(temp);
             temp = [];
-            slides.push(i*i);
+            projectSlides.push(i*i);
         }
     }
 </script>
@@ -103,7 +153,7 @@
         <Landing gotoSlide={gotoSlide}/>
     </FullpageSection>
 
-    <FullpageSection {slides} arrows>
+    <FullpageSection slides={projectSlides}>
         {#each projectSetPer3 as projectSet}
             <FullpageSlide>
                 <Projects projects={projectSet}/>
@@ -111,8 +161,12 @@
         {/each}
     </FullpageSection>
 
-    <FullpageSection>
-        <Experiences/>
+    <FullpageSection slides={experienceSlides}>
+       {#each experiencesSetPer3 as experienceSet}
+        <FullpageSlide>
+            <Experience experiences={experienceSet} />
+        </FullpageSlide>
+       {/each}
     </FullpageSection>
 	
     <FullpageSection>
