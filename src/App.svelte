@@ -1,5 +1,6 @@
 <script>
     //Svelte import
+    import { onMount } from 'svelte';
     import { 
         Fullpage,
         FullpageSection,
@@ -10,6 +11,7 @@
     import Projects from './Components/Projects.svelte';
     import Experience from './Components/Experience.svelte';
     import About from './Components/About.svelte';
+    import api from 'api.js';
 
     let currentSlide = 0;
     let projectsPerSlide = 3;
@@ -17,6 +19,10 @@
     function gotoSlide(num){
         currentSlide = num;
     }
+
+    onMount(async () => {
+		const all = api.all();
+	});
 
     let projectSlides = [];
     let experienceSlides = [];
